@@ -1,0 +1,9 @@
+2023-04-18 10:53:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRAIN" not found (this database is empty); SQL statement:
+INSERT INTO TRAIN (id, line, departure, arrival) SELECT * FROM CSVREAD('classpath:train.csv') [42104-214]
+2023-04-18 10:54:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRAIN" not found (this database is empty); SQL statement:
+INSERT INTO TRAIN (id, line, departure, arrival) SELECT * FROM CSVREAD('classpath:train.csv') [42104-214]
+2023-04-18 11:35:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRAIN" not found (this database is empty); SQL statement:
+INSERT INTO TRAIN (id, line, departure, arrival) SELECT * FROM CSVREAD('classpath:train.csv') [42104-214]
