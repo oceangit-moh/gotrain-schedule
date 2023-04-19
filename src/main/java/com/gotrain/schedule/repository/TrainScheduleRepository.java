@@ -17,5 +17,5 @@ import com.gotrain.schedule.bean.TrainSchedule;
 public interface TrainScheduleRepository extends JpaRepository<TrainSchedule, Integer> {
 	List<TrainSchedule> findByLine(String line);
 
-	List<TrainSchedule> getTrainScheduleByLineAndDeparture(String line, int departure);
+	List<TrainSchedule> findByLineAndDeparture(String line, int departure);
 }

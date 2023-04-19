@@ -63,7 +63,7 @@ public class TrainScheduleController {
 	public ResponseEntity<List<TrainSchedule>> getTrainScheduleByLineAndDeparture(@PathVariable String line,
 			@RequestParam("departure") String departure) {
 		try {
-			List<TrainSchedule> trainSchedule = trainScheduleRepository.getTrainScheduleByLineAndDeparture(line,
+			List<TrainSchedule> trainSchedule = trainScheduleRepository.findByLineAndDeparture(line,
 					convertMilitaryTimeToInteger(String.valueOf((departure))));
 			return ResponseEntity.ok().body(trainSchedule);
 		} catch (Exception e) {

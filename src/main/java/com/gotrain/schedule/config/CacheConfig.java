@@ -1,7 +1,3 @@
-/** Created by Sagar.Mohanty
- * Apr 18, 2023
- * go-train-schedule
- */
 package com.gotrain.schedule.config;
 
 import org.springframework.cache.CacheManager;
