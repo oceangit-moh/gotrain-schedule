@@ -75,12 +75,14 @@ public class TrainScheduleController {
 		String timeValue = departure;
 		int time = 0;
 		// Check if input value is in 24-hour military or 12-hour military format
-		boolean is24HourFormat = timeValue.matches("^([01]\\d|2[0-3]):([0-5]\\d)$");
+		//boolean is24HourFormat = timeValue.matches("^([01]\\d|2[0-3]):([0-5]\\d)$");
+		boolean is24HourFormat = timeValue.matches("^(0?[0-9]|1[0-9]|2[0-3])[0-5][0-9]$");
 		boolean is12HourFormat = timeValue.matches("^([0]?[1-9]|1[0-2]):([0-5]\\d)([ap]m)$");
 
 		if (is24HourFormat) {
 			// Convert 24-hour military format to an integer
-			time = Integer.parseInt(timeValue.replaceAll(":", ""));
+			//time = Integer.parseInt(timeValue.replaceAll(":", ""));
+			time = Integer.parseInt(timeValue);
 			System.out.println("Input value is in 24-hour military format. Converted value: " + time);
 			return time;
 		} else if (is12HourFormat) {
@@ -88,9 +90,9 @@ public class TrainScheduleController {
 			int hour = Integer.parseInt(timeValue.substring(0, 2));
 			int minute = Integer.parseInt(timeValue.substring(3, 5));
 			String amPm = timeValue.substring(6);
-			if (amPm.equals("PM") && hour != 12) {
+			if (amPm.equals("pm") && hour != 12) {
 				hour += 12;
-			} else if (amPm.equals("AM") && hour == 12) {
+			} else if (amPm.equals("am") && hour == 12) {
 				hour = 0;
 			}
 			time = hour * 100 + minute;
