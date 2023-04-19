@@ -15,6 +15,12 @@ import org.springframework.web.server.ResponseStatusException;
 import com.gotrain.schedule.bean.TrainSchedule;
 import com.gotrain.schedule.repository.TrainScheduleRepository;
 
+/**
+ * @author Sagar.Mohanty
+ * go-train-schedule
+ *	Apr 18, 2023
+ */
+
 @RestController
 @RequestMapping("/schedule")
 public class TrainScheduleController {
