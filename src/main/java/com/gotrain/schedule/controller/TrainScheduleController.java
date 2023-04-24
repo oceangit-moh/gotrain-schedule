@@ -1,5 +1,9 @@
 package com.gotrain.schedule.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,28 +75,36 @@ public class TrainScheduleController {
 		}
 	}
 
-	public static int convertMilitaryTimeToInteger(String departure) {
+	public static int convertMilitaryTimeToInteger(String departure) throws ParseException {
 		String timeValue = departure;
 		int time = 0;
+		int hour =0;
+		int minute =0;
 		// Check if input value is in 24-hour military or 12-hour military format
-		//boolean is24HourFormat = timeValue.matches("^([01]\\d|2[0-3]):([0-5]\\d)$");
 		boolean is24HourFormat = timeValue.matches("^(0?[0-9]|1[0-9]|2[0-3])[0-5][0-9]$");
 		boolean is12HourFormat = timeValue.matches("^([0]?[1-9]|1[0-2]):([0-5]\\d)([ap]m)$");
-
+		
 		if (is24HourFormat) {
 			// Convert 24-hour military format to an integer
-			//time = Integer.parseInt(timeValue.replaceAll(":", ""));
 			time = Integer.parseInt(timeValue);
 			System.out.println("Input value is in 24-hour military format. Converted value: " + time);
 			return time;
 		} else if (is12HourFormat) {
+
+			SimpleDateFormat format1 = new SimpleDateFormat("h:mmaa");
+			Date date1 = format1.parse(timeValue);
+			Calendar cal1 = Calendar.getInstance();
+			cal1.setTime(date1);
+
+			hour = cal1.get(Calendar.HOUR_OF_DAY);
+			minute = cal1.get(Calendar.MINUTE);
+			String amPm = cal1.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM";
+
+			System.out.println("The hour value is: " + hour + " : " + minute + " : " + amPm);
 			// Convert 12-hour military format to an integer
-			int hour = Integer.parseInt(timeValue.substring(0, 2));
-			int minute = Integer.parseInt(timeValue.substring(3, 5));
-			String amPm = timeValue.substring(6);
-			if (amPm.equals("pm") && hour != 12) {
+			if (amPm.equalsIgnoreCase("pm") && hour != 12) {
 				hour += 12;
-			} else if (amPm.equals("am") && hour == 12) {
+			} else if (amPm.equalsIgnoreCase("am") && hour == 12) {
 				hour = 0;
 			}
 			time = hour * 100 + minute;
